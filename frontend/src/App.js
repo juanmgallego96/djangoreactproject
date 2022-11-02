@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Link, Routes } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 
 import  CustomersList from './CustomersList'
-import  CustomerCreateUpdate  from './CustomerCreateUpdate'
+import  CustomersCreateUpdate  from './CustomersCreateUpdate'
 import './App.css';
 
 const BaseLayout = () => (
@@ -16,6 +16,7 @@ const BaseLayout = () => (
   <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div className="navbar-nav">
       <a className="nav-item nav-link" href="/">CUSTOMERS</a>
+      {/* <Link to="/">CUSTOMERS</Link> */}
       <a className="nav-item nav-link" href="/customer">CREATE CUSTOMER</a>
       
     </div>
@@ -23,9 +24,13 @@ const BaseLayout = () => (
 </nav>  
 
     <div className="content">
-      <Route path="/" exact component={CustomersList} />
-      <Route path="/customer/:pk"  component={CustomerCreateUpdate} />
-      <Route path="/customer/" exact component={CustomerCreateUpdate} />
+      <Routes>
+        <Route exact path="/" element={<CustomersList/>} />
+        <Route path="/customer/:pk" element={<CustomersCreateUpdate/>} />
+        <Route exact path="/customer/" element={<CustomersCreateUpdate/>} />
+      {/* <Route path="/customer/:pk"  component={CustomerCreateUpdate} /> */}
+      {/* <Route path="/customer/" exact component={CustomerCreateUpdate} /> */}
+      </Routes>
 
     </div>
 
